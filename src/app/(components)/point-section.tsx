@@ -20,19 +20,18 @@ export default function PointSection({
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleOnBlur = (e: ChangeEvent<HTMLInputElement>) => {
-    const enteredPoint = Number(e.target.value);
-    if (savedPoint < enteredPoint) e.target.value = savedPoint.toString();
+  const handleSubmit = () => {
+    if (!inputRef.current) return;
+    const enteredPoint = Number(inputRef.current.value);
+    const point = Math.min(savedPoint, enteredPoint);
+    inputRef.current.value = point.toString();
+    setUsingPoint(point);
+    setOpen(false);
   };
 
   const handleAllUse = () => {
     if (inputRef.current) inputRef.current.value = savedPoint.toString();
   };
-
-  useEffect(() => {
-    if (inputRef.current) setUsingPoint(Number(inputRef.current.value));
-    console.log("asdf");
-  }, [inputRef.current]);
 
   return (
     <>
@@ -66,17 +65,19 @@ export default function PointSection({
                 <h1 className="text-title text-white">
                   포인트를 얼마나 쓸까요?
                 </h1>
-                <p className="text-shadow-400 text-sm">보유 포인트 82원</p>
+                <p className="text-shadow-400 text-sm">
+                  보유 포인트 {savedPoint}원
+                </p>
               </div>
               <div className="space-y-10">
                 <div className="flex gap-2 items-center w-full mt-4">
-                  <Input ref={inputRef} type="number" onBlur={handleOnBlur} />
+                  <Input ref={inputRef} type="number" />
                   <span>원</span>
                 </div>
                 <Badge onClick={handleAllUse}>전액 사용</Badge>
               </div>
             </div>
-            <Button onClick={() => setOpen(false)}>확인</Button>
+            <Button onClick={handleSubmit}>확인</Button>
           </Sheet.Content>
         </Sheet.Container>
       </Sheet>
