@@ -4,9 +4,10 @@ import Badge from "./(components)/badge";
 import PointSection from "./(components)/point-section";
 import { useState } from "react";
 import PaymentMethodSection from "./(components)/payment-method-section";
+import Link from "next/link";
 
 export default function Home() {
-  const savedPoint = 82;
+  const savedPoint = 110;
   const [payment, setPayment] = useState<number>(50000);
   const [usingPoint, setUsingPoint] = useState<number>(0);
 
@@ -32,7 +33,9 @@ export default function Home() {
         </div>
         {/** 동의 및 결제 섹션 */}
         <section className="flex flex-col  ">
-          <Button>동의하고 결제하기</Button>
+          <Link href="/loading">
+            <Button>동의하고 결제하기</Button>
+          </Link>
           <div className="flex gap-2 p-5 w-full justify-center text-sm">
             <img
               src="/icons/check.svg"
