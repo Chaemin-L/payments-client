@@ -32,7 +32,7 @@ export default function Home() {
       </div>
       {/** 동의 및 결제 섹션 */}
       <section className="flex flex-col  ">
-        <Link href="/loading">
+        <Link href="/success">
           <Button>동의하고 결제하기</Button>
         </Link>
         <div className="flex gap-2 p-5 w-full justify-center text-sm">

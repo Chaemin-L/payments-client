@@ -1,4 +1,19 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Loading from "../loading/page";
+
 export default function SuccessPage() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
+  if (loading) return <Loading />;
+
   return (
     <div className="flex flex-col justify-center h-full gap-28">
       <section className="text-center space-y-6">
