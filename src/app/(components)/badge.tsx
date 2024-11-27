@@ -8,7 +8,7 @@ export default function Badge({ className, children, ...props }: Props) {
   return (
     <button
       className={`
-        px-4 py-1.5 min-w-16 bg-lightGray rounded-lg text-sm h-fit ${className}`}
+        px-4 py-1.5 min-w-16 bg-shadow-700 rounded-lg text-sm h-fit ${className}`}
       {...props}
     >
       {children}

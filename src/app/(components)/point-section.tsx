@@ -7,11 +7,16 @@ import Button from "./button";
 
 interface Props {
   savedPoint: number;
+  usingPoint: number;
+  setUsingPoint: (point: number) => void;
 }
 
-export default function PointSection({ savedPoint }: Props) {
+export default function PointSection({
+  savedPoint,
+  usingPoint,
+  setUsingPoint,
+}: Props) {
   const [open, setOpen] = useState(false);
-  const [point, setPoint] = useState<number | null>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -25,7 +30,7 @@ export default function PointSection({ savedPoint }: Props) {
   };
 
   useEffect(() => {
-    if (inputRef.current) setPoint(Number(inputRef.current.value));
+    if (inputRef.current) setUsingPoint(Number(inputRef.current.value));
     console.log("asdf");
   }, [inputRef.current]);
 
@@ -34,7 +39,7 @@ export default function PointSection({ savedPoint }: Props) {
       <div className="card flex justify-between items-center">
         <h2>포인트</h2>
         <Badge className="flex gap-2 " onClick={() => setOpen(true)}>
-          <span>0원</span>
+          <span>{usingPoint}원</span>
           <span>|</span>
           <span> 쓰기</span>
         </Badge>
@@ -43,11 +48,11 @@ export default function PointSection({ savedPoint }: Props) {
         isOpen={open}
         onClose={() => setOpen(false)}
         snapPoints={[400]}
-        className="bg-background/20"
+        className="bg-black/20"
       >
         <Sheet.Backdrop onTap={() => setOpen(false)} />
         <Sheet.Container
-          className=" *:bg-background text-white max-w-[500px] px-auto"
+          className=" *:bg-shadow-800 text-white max-w-[500px] px-auto"
           style={{
             background: "transparent",
             left: "50%",
@@ -61,7 +66,7 @@ export default function PointSection({ savedPoint }: Props) {
                 <h1 className="text-title text-white">
                   포인트를 얼마나 쓸까요?
                 </h1>
-                <p className="text-description text-sm">보유 포인트 82원</p>
+                <p className="text-shadow-400 text-sm">보유 포인트 82원</p>
               </div>
               <div className="space-y-10">
                 <div className="flex gap-2 items-center w-full mt-4">
