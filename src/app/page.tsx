@@ -3,6 +3,7 @@ import Button from "@/app/(components)/button";
 import Badge from "./(components)/badge";
 import PointSection from "./(components)/point-section";
 import { useState } from "react";
+import PaymentMethodSection from "./(components)/payment-method-section";
 
 export default function Home() {
   const savedPoint = 82;
@@ -26,23 +27,7 @@ export default function Home() {
               usingPoint={usingPoint}
               setUsingPoint={setUsingPoint}
             />
-            <div className="card flex justify-between items-center">
-              <div>
-                <div className="mb-4 ">결제수단</div>
-                <div className="flex">
-                  <img />
-                  <div className="flex flex-col ">
-                    <div className="text-white text-lg">
-                      KB종합통장-저축예금
-                    </div>
-                    <p className="text-sm font-normal">
-                      KB국민은행{"\n"}39610202200202020
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <Badge>변경</Badge>
-            </div>
+            <PaymentMethodSection />
           </section>
         </div>
         {/** 동의 및 결제 섹션 */}
