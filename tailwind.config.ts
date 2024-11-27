@@ -10,6 +10,7 @@ export default {
           purple: "#9974F8",
           green: "#B2F142",
           red: "#FF4C47",
+          yello: "#FFCA51",
         },
         shadow: {
           50: "#ffffff",
