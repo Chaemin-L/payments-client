@@ -5,6 +5,17 @@
 body {
   background-color: #1d1d23;
 }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* 스핀 버튼 제거 */
+  margin: 0;
+}
+input {
+  -webkit-appearance: none; /* iOS */
+  appearance: none; /* Android */
+}
+
 .card {
   width: 100%;
   padding: 20px;
@@ -23,5 +34,10 @@ body {
 
 .card-title {
   font-size: 16px;
+  font-weight: bold;
+}
+
+.text-title {
+  font-size: 18px;
   font-weight: bold;
 }

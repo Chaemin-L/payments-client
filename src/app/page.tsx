@@ -1,4 +1,7 @@
+"use client";
+import Button from "@/app/(components)/button";
 import Badge from "./(components)/badge";
+import PointSection from "./(components)/point-section";
 
 export default function Home() {
   return (
@@ -13,14 +16,7 @@ export default function Home() {
           </section>
           {/** 정보 섹션 */}
           <section className="w-full flex flex-col gap-5 card-title sm:card-title-mb">
-            <div className="card flex justify-between items-center">
-              <h2>포인트</h2>
-              <Badge className="flex gap-2 ">
-                <span>0원</span>
-                <span>|</span>
-                <span> 쓰기</span>
-              </Badge>
-            </div>
+            <PointSection savedPoint={82} />
             <div className="card flex justify-between items-center">
               <div>
                 <div className="mb-4 ">결제수단</div>
@@ -42,7 +38,7 @@ export default function Home() {
         </div>
         {/** 동의 및 결제 섹션 */}
         <section className="flex flex-col  ">
-          <button className=" card-primary text-lg">동의하고 결제하기</button>
+          <Button>동의하고 결제하기</Button>
           <div className="flex gap-2 p-5 w-full justify-center text-sm">
             <img
               src="/icons/check.svg"
