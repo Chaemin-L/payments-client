@@ -1,21 +1,21 @@
 "use client";
 import { Sheet } from "react-modal-sheet";
 import Badge from "./badge";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Input from "./input";
 import Button from "./button";
 
 interface Props {
   savedPoint: number;
   usingPoint: number;
-  setUsingPoint: (point: number) => void;
+  // setUsingPoint: (point: number) => void;
 }
 
 export default function PointSection({
   savedPoint,
   usingPoint,
-  setUsingPoint,
-}: Props) {
+}: // setUsingPoint,
+Props) {
   const [open, setOpen] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -25,7 +25,7 @@ export default function PointSection({
     const enteredPoint = Number(inputRef.current.value);
     const point = Math.min(savedPoint, enteredPoint);
     inputRef.current.value = point.toString();
-    setUsingPoint(point);
+    usingPoint = point;
     setOpen(false);
   };
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SUIT } from "@/styles/fonts/fonts";
+import { TanstackQueryClientProvider } from "@/providers/tanstackProviders";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +17,7 @@ export default function RootLayout({
       <body
         className={`antialiased w-full h-screen max-h-screen mx-auto max-w-[500px] text-black p-4`}
       >
-        {children}
+        <TanstackQueryClientProvider>{children}</TanstackQueryClientProvider>
       </body>
     </html>
   );
