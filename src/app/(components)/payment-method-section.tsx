@@ -6,7 +6,6 @@ export default function PaymentMethodSection() {
       <div>
         <div className="mb-4 ">결제수단</div>
         <div className="flex">
-          <img />
           <div className="flex flex-col ">
             <div className="text-white text-lg">KB종합통장-저축예금</div>
             <p className="text-sm font-normal">
