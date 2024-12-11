@@ -1,10 +1,11 @@
 "use client";
+import Image from "next/image";
+import { useState } from "react";
 import Button from "./(components)/button";
 import PaymentMethodSection from "./(components)/payment-method-section";
 import PointSection from "./(components)/point-section";
-import { useState } from "react";
-import { usePostPayment } from "./hooks/usePostPayment";
 import { useGetPayment } from "./hooks/useGetPayment";
+import { usePostPayment } from "./hooks/usePostPayment";
 
 interface Props {
   token: string;
@@ -22,7 +23,8 @@ export default function PaymentsInfo({ token, savedPoint }: Props) {
       <div>
         <section className="text-center py-20 space-y-2">
           <p className="text-shadow-400 text-base">
-            {product.orderName ?? "orderName 없음"}
+            {/* {product.orderName ?? "orderName 없음"} */}
+            오더네임
           </p>
           <h1 className="text-white text-3xl font-bold">
             {(payment - pointToUse).toLocaleString()}원
@@ -40,10 +42,12 @@ export default function PaymentsInfo({ token, savedPoint }: Props) {
         <Button onClick={() => mutate(pointToUse)}>동의하고 결제하기</Button>
         {/* </Link> */}
         <div className="flex gap-2 p-5 w-full justify-center text-sm">
-          <img
+          <Image
             src="/icons/check.svg"
             className="w-5 h-5 inline"
             alt="결제 동의"
+            width={100}
+            height={100}
           />
           <span className="text-accent-green">필수</span>
           <span className="text-shadow-400">

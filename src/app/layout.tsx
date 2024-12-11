@@ -1,6 +1,6 @@
+import { TanstackQueryClientProvider } from "@/providers/tanstackProviders";
 import type { Metadata } from "next";
 import "./globals.css";
-import { TanstackQueryClientProvider } from "@/providers/tanstackProviders";
 
 export const metadata: Metadata = {
   title: "Create Next App",

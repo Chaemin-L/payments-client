@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Loading from "../loading/page";
 
@@ -17,10 +17,12 @@ export default function SuccessPage() {
   return (
     <div className="flex flex-col justify-center h-full gap-28">
       <section className="text-center space-y-6">
-        <img
+        <Image
           src="/icons/success.svg"
           alt="결제 성공"
           className="mx-auto w-16 h-16"
+          width={100}
+          height={100}
         />
         <h1 className="text-white text-3xl font-bold">결제 완료</h1>
       </section>
