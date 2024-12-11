@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./(components)/button";
 import PaymentMethodSection from "./(components)/payment-method-section";
 import PointSection from "./(components)/point-section";
@@ -17,6 +17,10 @@ export default function PaymentsInfo({ token, savedPoint }: Props) {
   const [pointToUse] = useState<number>(0);
   const { data: product } = useGetPayment(token);
   const { mutate } = usePostPayment(token);
+
+  useEffect(() => {
+    console.log(product);
+  }, []);
 
   return (
     <div className="relative h-full flex flex-col justify-between">
