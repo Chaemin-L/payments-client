@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 
 interface Props
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className"> {
-  className: string;
+  className?: string;
 }
 export default function Button({ className, ...props }: Props) {
   return (
