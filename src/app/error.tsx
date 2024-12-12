@@ -12,6 +12,7 @@ export default function Error({
       <div className="flex flex-col text-center gap-4 ">
         <h1 className="text-2xl">{error.message}</h1>
         <p className="text-t2">통신 중 에러가 발생했습니다</p>
+        <p>{error.digest}</p>
       </div>
       <Link
         href={"https://www.plantify.co.kr"}

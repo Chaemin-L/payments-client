@@ -1,8 +1,6 @@
 import PaymentsInfo from "@/app/payments-info";
 import { getPayment } from "@/services/pay";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
-import Loading from "./loading/page";
 
 interface Props {
   searchParams: Promise<{ payments: string }>;
@@ -33,9 +31,7 @@ export default async function Home({ searchParams }: Props) {
 
   return (
     <main className="h-full">
-      <Suspense fallback={<Loading />}>
-        <PaymentsInfo token={token} payment={payment} />
-      </Suspense>
+      <PaymentsInfo token={token} payment={payment} />
     </main>
   );
 }
