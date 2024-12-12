@@ -26,3 +26,10 @@ export interface PointType {
   accumulatedPoints: number;
   redeemedPoints: number;
 }
+
+export interface PayType {
+  payNum: number;
+  balance: number;
+  createdAt: Date;
+  updatedAt: Date;
+}

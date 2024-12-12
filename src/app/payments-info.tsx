@@ -3,7 +3,7 @@ import { PaymentType } from "@/types/pay";
 import Image from "next/image";
 import { useState } from "react";
 import Button from "./(components)/button";
-import PaymentMethodSection from "./(components)/payment-method-section";
+import PaySection from "./(components)/pay-section";
 import PointSection from "./(components)/point-section";
 import { usePostPayment } from "./hooks/usePostPayment";
 
@@ -11,9 +11,15 @@ interface Props {
   token: string;
   payment: PaymentType;
   point: number;
+  balance: number;
 }
 
-export default function PaymentsInfo({ token, payment, point }: Props) {
+export default function PaymentsInfo({
+  token,
+  payment,
+  point,
+  balance,
+}: Props) {
   const [payDisabled, setPayDisabled] = useState<boolean>(false);
   const [pointToUse, setPointToUse] = useState<number>(0);
   const { mutateAsync } = usePostPayment(token);
@@ -38,12 +44,13 @@ export default function PaymentsInfo({ token, payment, point }: Props) {
         </section>
         {/** 정보 섹션 */}
         <section className="w-full flex flex-col gap-5 card-title sm:card-title-mb">
+          <PaySection balance={balance} />
           <PointSection
             point={point}
             pointToUse={pointToUse}
             setPointToUse={setPointToUse}
           />
-          <PaymentMethodSection />
+          {/* <PaymentMethodSection /> */}
         </section>
       </div>
       {/** 동의 및 결제 섹션 */}
@@ -51,7 +58,7 @@ export default function PaymentsInfo({ token, payment, point }: Props) {
         <Button
           onClick={onClickPay}
           disabled={payDisabled}
-          className="disabled:opacity-90"
+          className="disabled:opacity-80"
         >
           동의하고 결제하기
         </Button>

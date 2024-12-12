@@ -1,5 +1,5 @@
 import fetchClient from "@/lib/fetchClient";
-import { FinalResponse, PaymentType, PointType } from "@/types/pay";
+import { FinalResponse, PaymentType, PayType, PointType } from "@/types/pay";
 import { redirect } from "next/navigation";
 
 export async function getPayment(token: string) {
@@ -34,6 +34,17 @@ export async function postPayment(
 
 export async function getPoint(token: string) {
   const data: FinalResponse<PointType> = await fetchClient("/points", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      token,
+    },
+  });
+  if (data.status === 200) return data.data;
+  throw new Error(data.message);
+}
+
+export async function getPay(token: string) {
+  const data: FinalResponse<PayType> = await fetchClient(`/`, {
     headers: {
       Authorization: `Bearer ${token}`,
       token,
