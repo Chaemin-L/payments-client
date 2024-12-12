@@ -47,6 +47,7 @@ export default function PaymentsInfo({
           <PaySection balance={balance} />
           <PointSection
             point={point}
+            amount={amount}
             pointToUse={pointToUse}
             setPointToUse={setPointToUse}
           />
