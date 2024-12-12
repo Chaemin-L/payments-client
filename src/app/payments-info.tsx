@@ -14,12 +14,14 @@ interface Props {
 }
 
 export default function PaymentsInfo({ token, data, savedPoint }: Props) {
+  const [payDisabled, setPayDisabled] = useState<boolean>(false);
   const [pointToUse] = useState<number>(0);
   const { mutateAsync } = usePostPayment(token);
 
   const { orderName, redirectUri, amount } = data;
 
   const onClickPay = async () => {
+    setPayDisabled(true);
     await mutateAsync({ pointToUse, redirectUri });
   };
 
@@ -42,7 +44,13 @@ export default function PaymentsInfo({ token, data, savedPoint }: Props) {
       </div>
       {/** 동의 및 결제 섹션 */}
       <section className="flex flex-col  ">
-        <Button onClick={onClickPay}>동의하고 결제하기</Button>
+        <Button
+          onClick={onClickPay}
+          disabled={payDisabled}
+          className="disabled:opacity-90"
+        >
+          동의하고 결제하기
+        </Button>
         <div className="flex gap-2 p-5 w-full justify-center text-sm">
           <Image
             src="/icons/check.svg"

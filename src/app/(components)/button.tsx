@@ -1,8 +1,12 @@
 import { ButtonHTMLAttributes } from "react";
 
-export default function Button(props: ButtonHTMLAttributes<HTMLButtonElement>) {
+interface Props
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className"> {
+  className: string;
+}
+export default function Button({ className, ...props }: Props) {
   return (
-    <button className="card-primary text-lg" {...props}>
+    <button className={`card-primary text-lg ${className}`} {...props}>
       {props.children}
     </button>
   );
