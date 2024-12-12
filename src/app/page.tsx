@@ -24,26 +24,17 @@ interface Props {
 //   updatedAt: new Date(),
 //   redirectUri: "asdf",
 // };
-const point = 1000;
-const balance = 10000;
 
 export default async function Home({ searchParams }: Props) {
   const { payments: token } = await searchParams;
   const payment = await getPayment(token);
-  // const { pointBalance: point } = await getPoint(token);
-  // const { balance } = await getPay(token);
 
   if (!token) return notFound();
 
   return (
     <main className="h-full">
       <Suspense fallback={<Loading />}>
-        <PaymentsInfo
-          token={token}
-          payment={payment}
-          point={point}
-          balance={balance}
-        />
+        <PaymentsInfo token={token} payment={payment} />
       </Suspense>
     </main>
   );
