@@ -1,4 +1,5 @@
 "use client";
+import { PaymentType } from "@/types/pay";
 import Image from "next/image";
 import { useState } from "react";
 import Button from "./(components)/button";
@@ -11,7 +12,7 @@ import Loading from "./loading/page";
 
 interface Props {
   token: string;
-  // payment: PaymentType;
+  payment: PaymentType;
 }
 
 export default function PaymentsInfo({ token }: Props) {

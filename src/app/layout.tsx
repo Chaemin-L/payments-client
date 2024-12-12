@@ -1,6 +1,8 @@
 import { TanstackQueryClientProvider } from "@/providers/tanstackProviders";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
+import Loading from "./loading/page";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +19,9 @@ export default function RootLayout({
       <body
         className={`antialiased w-full h-screen max-h-screen mx-auto max-w-[500px] text-black p-4`}
       >
-        <TanstackQueryClientProvider>{children}</TanstackQueryClientProvider>
+        <TanstackQueryClientProvider>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </TanstackQueryClientProvider>
       </body>
     </html>
   );
