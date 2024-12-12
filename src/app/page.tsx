@@ -1,5 +1,5 @@
 import PaymentsInfo from "@/app/payments-info";
-import { getPay, getPayment, getPoint } from "@/services/pay";
+import { getPayment } from "@/services/pay";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Loading from "./loading/page";
@@ -24,14 +24,14 @@ interface Props {
 //   updatedAt: new Date(),
 //   redirectUri: "asdf",
 // };
-// const point = 1000;
-// const balance = 10000;
+const point = 1000;
+const balance = 10000;
 
 export default async function Home({ searchParams }: Props) {
   const { payments: token } = await searchParams;
   const payment = await getPayment(token);
-  const { pointBalance: point } = await getPoint(token);
-  const { balance } = await getPay(token);
+  // const { pointBalance: point } = await getPoint(token);
+  // const { balance } = await getPay(token);
 
   if (!token) return notFound();
 

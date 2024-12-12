@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Button from "./(components)/button";
 import PaySection from "./(components)/pay-section";
+import PaymentMethodSection from "./(components)/payment-method-section";
 import PointSection from "./(components)/point-section";
 import { usePostPayment } from "./hooks/usePostPayment";
 
@@ -24,6 +25,7 @@ export default function PaymentsInfo({
   const [pointToUse, setPointToUse] = useState<number>(0);
   const { mutateAsync } = usePostPayment(token);
 
+  console.log(token, payment, point, balance);
   const { orderId, orderName, redirectUri, amount } = payment;
 
   const onClickPay = async () => {
@@ -44,6 +46,7 @@ export default function PaymentsInfo({
         </section>
         {/** 정보 섹션 */}
         <section className="w-full flex flex-col gap-5 card-title sm:card-title-mb">
+          <PaymentMethodSection />
           <PaySection balance={balance} />
           <PointSection
             point={point}
@@ -51,7 +54,6 @@ export default function PaymentsInfo({
             pointToUse={pointToUse}
             setPointToUse={setPointToUse}
           />
-          {/* <PaymentMethodSection /> */}
         </section>
       </div>
       {/** 동의 및 결제 섹션 */}
