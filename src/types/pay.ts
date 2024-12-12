@@ -18,6 +18,10 @@ export interface PaymentType {
   createdAt: Date;
   updatedAt: Date;
   redirectUri: string;
+  bankName: string;
+  accountNum: number;
+  pointBalance: number;
+  balance: number;
 }
 
 export interface PointType {

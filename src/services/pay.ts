@@ -29,7 +29,7 @@ export async function postPayment(
     },
   });
   if (data.status === 200)
-    return redirect(`/success?redirectUri=${redirectUri}`);
+    return redirect(`/${orderId}/success?redirectUri=${redirectUri}`);
   throw new Error(data.message);
 }
 

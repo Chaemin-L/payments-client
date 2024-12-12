@@ -11,22 +11,24 @@ import { usePostPayment } from "./hooks/usePostPayment";
 interface Props {
   token: string;
   payment: PaymentType;
-  point: number;
-  balance: number;
 }
 
-export default function PaymentsInfo({
-  token,
-  payment,
-  point,
-  balance,
-}: Props) {
+export default function PaymentsInfo({ token, payment }: Props) {
   const [payDisabled, setPayDisabled] = useState<boolean>(false);
   const [pointToUse, setPointToUse] = useState<number>(0);
   const { mutateAsync } = usePostPayment(token);
 
-  console.log(token, payment, point, balance);
-  const { orderId, orderName, redirectUri, amount } = payment;
+  // console.log(token, payment, point, balance);
+  const {
+    orderId,
+    orderName,
+    redirectUri,
+    amount,
+    balance,
+    pointBalance,
+    bankName,
+    accountNum,
+  } = payment;
 
   const onClickPay = async () => {
     setPayDisabled(true);
@@ -46,10 +48,10 @@ export default function PaymentsInfo({
         </section>
         {/** 정보 섹션 */}
         <section className="w-full flex flex-col gap-5 card-title sm:card-title-mb">
-          <PaymentMethodSection />
+          <PaymentMethodSection bankName={bankName} accountNum={accountNum} />
           <PaySection balance={balance} />
           <PointSection
-            point={point}
+            point={pointBalance}
             amount={amount}
             pointToUse={pointToUse}
             setPointToUse={setPointToUse}
