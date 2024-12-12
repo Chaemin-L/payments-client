@@ -1,4 +1,5 @@
 import PaymentsInfo from "@/app/payments-info";
+import { getPayment } from "@/services/pay";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Loading from "./loading/page";
@@ -28,13 +29,13 @@ export default async function Home({ searchParams }: Props) {
   const { payments: token } = await searchParams;
   if (!token) return notFound();
 
-  // const payment = await getPayment(token);
+  const payment = await getPayment(token);
 
   return (
     <main className="h-full">
       <Suspense fallback={<Loading />}>
-        {/* <PaymentsInfo token={token} payment={payment} /> */}
-        <PaymentsInfo token={token} />
+        <PaymentsInfo token={token} payment={payment} />
+        {/* <PaymentsInfo token={token} /> */}
       </Suspense>
     </main>
   );
