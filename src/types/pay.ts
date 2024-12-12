@@ -19,3 +19,10 @@ export interface PaymentType {
   updatedAt: Date;
   redirectUri: string;
 }
+
+export interface PointType {
+  userId: number;
+  pointBalance: number;
+  accumulatedPoints: number;
+  redeemedPoints: number;
+}

@@ -6,16 +6,16 @@ import Button from "./button";
 import Input from "./input";
 
 interface Props {
-  savedPoint: number;
+  point: number;
   pointToUse: number;
-  // setUsingPoint: (point: number) => void;
+  setPointToUse: (point: number) => void;
 }
 
 export default function PointSection({
-  savedPoint,
+  point,
   pointToUse,
-}: // setUsingPoint,
-Props) {
+  setPointToUse,
+}: Props) {
   const [open, setOpen] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -23,14 +23,14 @@ Props) {
   const handleSubmit = () => {
     if (!inputRef.current) return;
     const enteredPoint = Number(inputRef.current.value);
-    const point = Math.min(savedPoint, enteredPoint);
-    inputRef.current.value = point.toString();
-    pointToUse = point;
+    const finalPoint = Math.min(point, enteredPoint);
+    inputRef.current.value = finalPoint.toString();
+    setPointToUse(finalPoint);
     setOpen(false);
   };
 
   const handleAllUse = () => {
-    if (inputRef.current) inputRef.current.value = savedPoint.toString();
+    if (inputRef.current) inputRef.current.value = point.toString();
   };
 
   return (
@@ -65,9 +65,7 @@ Props) {
                 <h1 className="text-title text-white">
                   포인트를 얼마나 쓸까요?
                 </h1>
-                <p className="text-shadow-400 text-sm">
-                  보유 포인트 {savedPoint}원
-                </p>
+                <p className="text-shadow-400 text-sm">보유 포인트 {point}원</p>
               </div>
               <div className="space-y-10">
                 <div className="flex gap-2 items-center w-full mt-4">
