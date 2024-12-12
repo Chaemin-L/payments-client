@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import Loading from "./loading/page";
 
 interface Props {
-  searchParams: Promise<{ payments: string }>;
+  searchParams: { payments?: string };
 }
 
 // const token = "asdfasdf";
@@ -26,10 +26,11 @@ interface Props {
 // };
 
 export default async function Home({ searchParams }: Props) {
-  const { payments: token } = await searchParams;
+  const token = searchParams.payments;
   if (!token) return notFound();
 
   const payment = await getPayment(token);
+  if (!payment) return notFound();
 
   return (
     <main className="h-full">
