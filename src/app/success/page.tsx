@@ -1,9 +1,12 @@
 "use client";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loading from "../loading/page";
 
 export default function SuccessPage() {
+  const searchParams = useSearchParams();
+  const redirectUri = searchParams.get("redirectUri") ?? "";
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,6 +39,9 @@ export default function SuccessPage() {
           <div className="text-shadow-300">AS45D22EWV5A</div>
         </div>
       </section>
+      <a href={redirectUri} className="text-white">
+        이전 화면으로 이동하기
+      </a>
     </div>
   );
 }

@@ -1,3 +1,9 @@
+export interface FinalResponse<T> {
+  status: number;
+  message: string;
+  data: T;
+}
+
 export interface PaymentType {
   transactionId: number;
   userId: number;
@@ -11,4 +17,5 @@ export interface PaymentType {
   status: string;
   createdAt: Date;
   updatedAt: Date;
+  redirectUri: string;
 }

@@ -5,7 +5,12 @@ import { useRouter } from "next/navigation";
 export function usePostPayment(token: string) {
   const router = useRouter();
   return useMutation({
-    mutationFn: (pointToUse: number) => postPayment(token, pointToUse),
-    onSuccess: () => router.push("/success"),
+    mutationFn: ({
+      pointToUse,
+      redirectUri,
+    }: {
+      pointToUse: number;
+      redirectUri: string;
+    }) => postPayment(token, pointToUse, redirectUri),
   });
 }

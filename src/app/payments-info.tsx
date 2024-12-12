@@ -1,50 +1,48 @@
 "use client";
+import { PaymentType } from "@/types/pay";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "./(components)/button";
 import PaymentMethodSection from "./(components)/payment-method-section";
 import PointSection from "./(components)/point-section";
-import { useGetPayment } from "./hooks/useGetPayment";
 import { usePostPayment } from "./hooks/usePostPayment";
 
 interface Props {
   token: string;
+  data: PaymentType;
   savedPoint: number;
 }
 
-export default function PaymentsInfo({ token, savedPoint }: Props) {
-  const [payment] = useState<number>(50000);
+export default function PaymentsInfo({ token, data, savedPoint }: Props) {
   const [pointToUse] = useState<number>(0);
-  const { data: product } = useGetPayment(token);
-  const { mutate } = usePostPayment(token);
+  const { mutateAsync } = usePostPayment(token);
 
-  useEffect(() => {
-    console.log(product);
-  }, []);
+  const { orderName, redirectUri, amount } = data;
+
+  const onClickPay = async () => {
+    await mutateAsync({ pointToUse, redirectUri });
+  };
 
   return (
     <div className="relative h-full flex flex-col justify-between">
       <div>
         <section className="text-center py-20 space-y-2">
           <p className="text-shadow-400 text-base">
-            {/* {product.orderName ?? "orderName 없음"} */}
-            오더네임
+            {orderName ?? "잘못된 주문"}
           </p>
           <h1 className="text-white text-3xl font-bold">
-            {(payment - pointToUse).toLocaleString()}원
+            {(amount - pointToUse).toLocaleString()}원
           </h1>
         </section>
         {/** 정보 섹션 */}
         <section className="w-full flex flex-col gap-5 card-title sm:card-title-mb">
-          <PointSection savedPoint={savedPoint} usingPoint={pointToUse} />
+          <PointSection savedPoint={savedPoint} pointToUse={pointToUse} />
           <PaymentMethodSection />
         </section>
       </div>
       {/** 동의 및 결제 섹션 */}
       <section className="flex flex-col  ">
-        {/* <Link href="/success"> */}
-        <Button onClick={() => mutate(pointToUse)}>동의하고 결제하기</Button>
-        {/* </Link> */}
+        <Button onClick={onClickPay}>동의하고 결제하기</Button>
         <div className="flex gap-2 p-5 w-full justify-center text-sm">
           <Image
             src="/icons/check.svg"

@@ -1,19 +1,19 @@
 "use client";
+import { useRef, useState } from "react";
 import { Sheet } from "react-modal-sheet";
 import Badge from "./badge";
-import { useRef, useState } from "react";
-import Input from "./input";
 import Button from "./button";
+import Input from "./input";
 
 interface Props {
   savedPoint: number;
-  usingPoint: number;
+  pointToUse: number;
   // setUsingPoint: (point: number) => void;
 }
 
 export default function PointSection({
   savedPoint,
-  usingPoint,
+  pointToUse,
 }: // setUsingPoint,
 Props) {
   const [open, setOpen] = useState(false);
@@ -25,7 +25,7 @@ Props) {
     const enteredPoint = Number(inputRef.current.value);
     const point = Math.min(savedPoint, enteredPoint);
     inputRef.current.value = point.toString();
-    usingPoint = point;
+    pointToUse = point;
     setOpen(false);
   };
 
@@ -38,7 +38,7 @@ Props) {
       <div className="card flex justify-between items-center">
         <h2>포인트</h2>
         <Badge className="flex gap-2 " onClick={() => setOpen(true)}>
-          <span>{usingPoint}원</span>
+          <span>{pointToUse}원</span>
           <span>|</span>
           <span> 쓰기</span>
         </Badge>
