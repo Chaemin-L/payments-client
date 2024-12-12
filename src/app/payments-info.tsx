@@ -1,23 +1,26 @@
 "use client";
-import { PaymentType } from "@/types/pay";
 import Image from "next/image";
 import { useState } from "react";
 import Button from "./(components)/button";
 import PaySection from "./(components)/pay-section";
 import PaymentMethodSection from "./(components)/payment-method-section";
 import PointSection from "./(components)/point-section";
+import { useGetPayment } from "./hooks/useGetPayment";
 import { usePostPayment } from "./hooks/usePostPayment";
+import Loading from "./loading/page";
 
 interface Props {
   token: string;
-  payment: PaymentType;
+  // payment: PaymentType;
 }
 
-export default function PaymentsInfo({ token, payment }: Props) {
+export default function PaymentsInfo({ token }: Props) {
   const [payDisabled, setPayDisabled] = useState<boolean>(false);
   const [pointToUse, setPointToUse] = useState<number>(0);
+  const { data: payment, isLoading } = useGetPayment(token);
   const { mutateAsync } = usePostPayment(token);
 
+  if (!payment || isLoading) return <Loading />;
   // console.log(token, payment, point, balance);
   const {
     orderId,
