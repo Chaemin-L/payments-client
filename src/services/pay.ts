@@ -19,6 +19,7 @@ export async function getPayment(token: string) {
 export async function postPayment(
   token: string,
   pointToUse: number,
+  orderId: string
   redirectUri: string
 ) {
   const data = await fetchClient(`/payment?pointToUse=${pointToUse}`, {

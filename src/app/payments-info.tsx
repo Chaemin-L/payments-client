@@ -24,11 +24,11 @@ export default function PaymentsInfo({
   const [pointToUse, setPointToUse] = useState<number>(0);
   const { mutateAsync } = usePostPayment(token);
 
-  const { orderName, redirectUri, amount } = payment;
+  const { orderId, orderName, redirectUri, amount } = payment;
 
   const onClickPay = async () => {
     setPayDisabled(true);
-    await mutateAsync({ pointToUse, redirectUri });
+    await mutateAsync({ pointToUse, orderId, redirectUri });
   };
 
   return (

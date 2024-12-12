@@ -5,10 +5,12 @@ export function usePostPayment(token: string) {
   return useMutation({
     mutationFn: ({
       pointToUse,
+      orderId,
       redirectUri,
     }: {
       pointToUse: number;
+      orderId: string;
       redirectUri: string;
-    }) => postPayment(token, pointToUse, redirectUri),
+    }) => postPayment(token, pointToUse, orderId, redirectUri),
   });
 }
