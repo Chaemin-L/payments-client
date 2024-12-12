@@ -27,9 +27,9 @@ interface Props {
 
 export default async function Home({ searchParams }: Props) {
   const { payments: token } = await searchParams;
-  const payment = await getPayment(token);
-
   if (!token) return notFound();
+
+  const payment = await getPayment(token);
 
   return (
     <main className="h-full">
