@@ -35,7 +35,7 @@ export default function PaymentsInfo({ token }: Props) {
 
   const onClickPay = () => {
     setPayDisabled(true);
-    mutate({ pointToUse, orderId, redirectUri });
+    mutate({ pointToUse, orderId, amount, redirectUri });
   };
 
   return (
