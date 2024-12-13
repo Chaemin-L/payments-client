@@ -10,12 +10,17 @@ const fetchClient = async (url: string, options: RequestInit = {}) => {
 
   const response = await fetch(`${BASE_URL}/v1/pay${url}`, mergedOptions);
 
+  if (response.redirected) {
+    window.location.href = response.url;
+    return;
+  }
+
   // 통신 에러
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}`);
   } else {
-    const data = await response.json();
-    return data;
+    const data = await response;
+    return data.json();
   }
 };
 

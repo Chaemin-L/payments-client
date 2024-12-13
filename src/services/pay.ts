@@ -11,6 +11,7 @@ export async function getPayment(token: string) {
         Authorization: `Bearer ${token}`,
         token,
       },
+      redirect: "follow",
     }
   );
   if (data.status === 200) return data.data;
