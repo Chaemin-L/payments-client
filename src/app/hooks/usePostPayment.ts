@@ -6,11 +6,13 @@ export function usePostPayment(token: string) {
     mutationFn: ({
       pointToUse,
       orderId,
+      amount,
       redirectUri,
     }: {
       pointToUse: number;
       orderId: string;
+      amount: number;
       redirectUri: string;
-    }) => postPayment(token, pointToUse, orderId, redirectUri),
+    }) => postPayment(token, pointToUse, orderId, amount, redirectUri),
   });
 }

@@ -18,7 +18,7 @@ export default function PaymentsInfo({ token }: Props) {
   const [payDisabled, setPayDisabled] = useState<boolean>(false);
   const [pointToUse, setPointToUse] = useState<number>(0);
   const { data: payment, isLoading } = useGetPayment(token);
-  const { mutateAsync } = usePostPayment(token);
+  const { mutate } = usePostPayment(token);
 
   if (!payment || isLoading) return <Loading />;
   // console.log(token, payment, point, balance);
@@ -33,9 +33,9 @@ export default function PaymentsInfo({ token }: Props) {
     accountNum,
   } = payment;
 
-  const onClickPay = async () => {
+  const onClickPay = () => {
     setPayDisabled(true);
-    await mutateAsync({ pointToUse, orderId, redirectUri });
+    mutate({ pointToUse, orderId, redirectUri });
   };
 
   return (

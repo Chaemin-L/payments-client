@@ -20,6 +20,7 @@ export async function postPayment(
   token: string,
   pointToUse: number,
   orderId: string,
+  amount: number,
   redirectUri: string
 ) {
   const data = await fetchClient(`/payment?pointToUse=${pointToUse}`, {
@@ -29,7 +30,9 @@ export async function postPayment(
     },
   });
   if (data.status === 200)
-    return redirect(`/${orderId}/success?redirectUri=${redirectUri}`);
+    return redirect(
+      `/${orderId}/success?redirectUri=${redirectUri}&amount=${amount}`
+    );
   throw new Error(data.message);
 }
 
