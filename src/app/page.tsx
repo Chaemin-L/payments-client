@@ -26,6 +26,7 @@ interface Props {
 
 export default async function Home({ searchParams }: Props) {
   const token = (await searchParams).payments;
+  console.log("결제 정보 페이지에서 받은 토큰: ", token);
   if (!token) return notFound();
 
   // const payment = await getPayment(token);
