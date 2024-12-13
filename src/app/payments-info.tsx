@@ -21,7 +21,6 @@ export default function PaymentsInfo({ token }: Props) {
   const { mutate } = usePostPayment(token);
 
   if (!payment || isLoading) return <Loading />;
-  console.log("결제정보 내부(토큰, 결제정보):", token, payment);
   const {
     orderId,
     orderName,

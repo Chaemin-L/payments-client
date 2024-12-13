@@ -1,10 +1,10 @@
 import PaymentsInfo from "@/app/payments-info";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import Loading from "./loading/page";
+import Loading from "../loading/page";
 
 interface Props {
-  searchParams: Promise<{ payments?: string }>;
+  searchParams: Promise<{ token?: string }>;
 }
 
 // const token = "asdfasdf";
@@ -25,8 +25,7 @@ interface Props {
 // };
 
 export default async function Home({ searchParams }: Props) {
-  const token = (await searchParams).payments;
-  console.log("결제 정보 페이지에서 받은 토큰: ", token);
+  const token = (await searchParams).token;
   if (!token) return notFound();
 
   // const payment = await getPayment(token);
