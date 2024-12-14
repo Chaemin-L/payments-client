@@ -24,7 +24,14 @@ const nextConfig: NextConfig = {
         source: "/v1/:path*",
         destination: `${API_BASE_URL}/v1/:path*`,
       },
+      {
+        source: "/payment/:path*",
+        destination: `/payment/:path*`,
+      },
     ];
+  },
+  experimental: {
+    disableOptimizedLoading: true,
   },
 };
 
