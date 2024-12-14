@@ -1,6 +1,6 @@
-import PaymentsInfo from "@/app/payments-info";
+import PaymentsInfo from "@/app/payment/payments-info";
 import { Suspense } from "react";
-import Loading from "./loading/page";
+import Loading from "../loading/page";
 
 interface Props {
   searchParams: Promise<{ token?: string }>;

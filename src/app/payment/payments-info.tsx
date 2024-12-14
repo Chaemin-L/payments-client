@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import Button from "./(components)/button";
-import PaySection from "./(components)/pay-section";
-import PaymentMethodSection from "./(components)/payment-method-section";
-import PointSection from "./(components)/point-section";
-import { useGetPayment } from "./hooks/useGetPayment";
-import { usePostPayment } from "./hooks/usePostPayment";
-import Loading from "./loading/page";
+import Button from "../(components)/button";
+import PaySection from "../(components)/pay-section";
+import PaymentMethodSection from "../(components)/payment-method-section";
+import PointSection from "../(components)/point-section";
+import { useGetPayment } from "../hooks/useGetPayment";
+import { usePostPayment } from "../hooks/usePostPayment";
+import Loading from "../loading/page";
 
 interface Props {
   token: string;
