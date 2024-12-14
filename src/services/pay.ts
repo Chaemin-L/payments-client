@@ -1,6 +1,5 @@
 import fetchClient from "@/lib/fetchClient";
 import { FinalResponse, PaymentType, PayType, PointType } from "@/types/pay";
-import { useRouter } from "next/navigation";
 
 export async function getPayment(token: string) {
   const data: FinalResponse<PaymentType> = await fetchClient(
@@ -17,25 +16,17 @@ export async function getPayment(token: string) {
   if (data.status === 200) return data.data;
   throw new Error(data.message);
 }
-export async function postPayment(
-  token: string,
-  pointToUse: number,
-  orderId: string,
-  amount: number,
-  redirectUri: string
-) {
-  const router = useRouter();
-  const data = await fetchClient(`/payment?pointToUse=${pointToUse}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      token,
-    },
-  });
-  if (data.status === 200)
-    return router.replace(
-      `/${orderId}/success?redirectUri=${redirectUri}&amount=${amount}`
-    );
-  throw new Error(data.message);
+export async function postPayment(token: string, pointToUse: number) {
+  const data: FinalResponse<PaymentType> = await fetchClient(
+    `/payment?pointToUse=${pointToUse}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        token,
+      },
+    }
+  );
+  return data;
 }
 
 export async function getPoint(token: string) {

@@ -13,7 +13,6 @@ export interface PaymentType {
   sellerId: number;
   amount: number;
   pointToUse: number;
-  transactionType: string;
   status: string;
   createdAt: Date;
   updatedAt: Date;
