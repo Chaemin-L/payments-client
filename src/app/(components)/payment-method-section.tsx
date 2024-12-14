@@ -1,6 +1,6 @@
 interface Props {
   bankName: string;
-  accountNum: number;
+  accountNum: string;
 }
 export default function PaymentMethodSection({ bankName, accountNum }: Props) {
   return (

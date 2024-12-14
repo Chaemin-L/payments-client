@@ -19,7 +19,7 @@ export interface PaymentType {
   updatedAt: Date;
   redirectUri: string;
   bankName: string;
-  accountNum: number;
+  accountNum: string;
   pointBalance: number;
   balance: number;
 }

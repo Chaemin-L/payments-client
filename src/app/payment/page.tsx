@@ -21,6 +21,10 @@ interface Props {
 //   createdAt: new Date(),
 //   updatedAt: new Date(),
 //   redirectUri: "asdf",
+//   bankName: "우리",
+//   accountNum: "123123123123",
+//   pointBalance: 123,
+//   balance: 123123,
 // };
 
 export default async function Home({ searchParams }: Props) {
@@ -32,7 +36,7 @@ export default async function Home({ searchParams }: Props) {
   return (
     <main className="h-full">
       <Suspense fallback={<Loading />}>
-        {/* <PaymentsInfo token={token} payment={payment} /> */}
+        {/* <PaymentsInfo token={token!} payment={payment} /> */}
         <PaymentsInfo token={token!} />
       </Suspense>
     </main>

@@ -6,6 +6,7 @@ import PaySection from "../(components)/pay-section";
 import PaymentMethodSection from "../(components)/payment-method-section";
 import PointSection from "../(components)/point-section";
 import { useGetPayment } from "../hooks/useGetPayment";
+import { usePostCancelPayment } from "../hooks/usePostCancelPayment";
 import { usePostPayment } from "../hooks/usePostPayment";
 import Loading from "../loading/page";
 
@@ -18,10 +19,13 @@ export default function PaymentsInfo({ token }: Props) {
   const [payDisabled, setPayDisabled] = useState<boolean>(false);
   const [pointToUse, setPointToUse] = useState<number>(0);
   const { data: payment, isLoading } = useGetPayment(token);
-  const { mutate } = usePostPayment(token);
+  const { mutate: cancelPay } = usePostCancelPayment(token);
+  const { mutate: postPay } = usePostPayment(token);
 
   if (!payment || isLoading) return <Loading />;
+
   const {
+    userId,
     orderId,
     orderName,
     redirectUri,
@@ -32,9 +36,13 @@ export default function PaymentsInfo({ token }: Props) {
     accountNum,
   } = payment;
 
+  const onClickCancel = () => {
+    cancelPay({ userId, orderId, reasons: "", redirectUri });
+  };
+
   const onClickPay = () => {
     setPayDisabled(true);
-    mutate({ pointToUse, orderId, amount, redirectUri });
+    postPay({ pointToUse, orderId, amount, redirectUri });
   };
 
   return (
@@ -62,13 +70,21 @@ export default function PaymentsInfo({ token }: Props) {
       </div>
       {/** 동의 및 결제 섹션 */}
       <section className="flex flex-col  ">
-        <Button
-          onClick={onClickPay}
-          disabled={payDisabled}
-          className="disabled:opacity-80"
-        >
-          동의하고 결제하기
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            className="w-[25%] whitespace-nowrap bg-shadow-400"
+            onClick={onClickCancel}
+          >
+            취소
+          </Button>
+          <Button
+            onClick={onClickPay}
+            disabled={payDisabled}
+            className="flex-1 disabled:opacity-80"
+          >
+            동의하고 결제하기
+          </Button>
+        </div>
         <div className="flex gap-2 p-5 w-full justify-center text-sm">
           <Image
             src="/icons/check.svg"
