@@ -13,6 +13,9 @@ async function postCancelPayment(request: RequestType) {
   const data = await fetchClient(`/cancellation`, {
     method: "POST",
     body: JSON.stringify(request),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   if (data.status === 200) return redirect(request.redirectUri);
   throw new Error(data.message);
