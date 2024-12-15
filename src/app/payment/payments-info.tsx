@@ -19,7 +19,7 @@ export default function PaymentsInfo({ token }: Props) {
   const [payDisabled, setPayDisabled] = useState<boolean>(false);
   const [pointToUse, setPointToUse] = useState<number>(0);
   const { data: payment, isLoading } = useGetPayment(token);
-  const { mutateAsync: cancelPay } = usePostCancelPayment(token);
+  const { mutateAsync: cancelPay } = usePostCancelPayment();
   const { mutateAsync: postPay } = usePostPayment(token);
 
   if (!payment || isLoading) return <Loading />;
@@ -37,7 +37,7 @@ export default function PaymentsInfo({ token }: Props) {
   } = payment;
 
   const onClickCancel = async () => {
-    await cancelPay({ userId, orderId, reasons: "", redirectUri });
+    await cancelPay({ userId, orderId, reason: "", redirectUri });
   };
 
   const onClickPay = async () => {
