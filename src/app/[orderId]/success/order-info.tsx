@@ -44,7 +44,7 @@ export default function OrderInfo({ orderId, amount, redirectUri }: Props) {
         </div>
       </section>
       <Link
-        href={redirectUri}
+        href={`${redirectUri}?orderId=${orderId}`}
         className="absolute bottom-10 left-0 right-0 bg-shadow-800 p-3 rounded-2xl text-white text-center"
       >
         이전 화면으로 이동하기
