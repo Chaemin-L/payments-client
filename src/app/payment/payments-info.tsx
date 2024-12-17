@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import Button from "../(components)/button";
 import PaySection from "../(components)/pay-section";
@@ -23,6 +24,7 @@ export default function PaymentsInfo({ token }: Props) {
   const { mutateAsync: postPay } = usePostPayment(token);
 
   if (!payment || isLoading) return <Loading />;
+  if (payment.status === "FIALED") redirect("/fail");
 
   const {
     userId,

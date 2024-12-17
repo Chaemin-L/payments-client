@@ -30,6 +30,8 @@ interface Props {
 export default async function Home({ searchParams }: Props) {
   const token = (await searchParams).token;
 
+  console.log("token", token);
+
   // const payment = await getPayment(token);
   // if (!payment) return notFound();
 
