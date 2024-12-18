@@ -38,9 +38,9 @@ export default function OrderInfo({ orderId, amount, redirectUri }: Props) {
           <div>결제 금액</div>
           <div className="text-shadow-300">{amount.toLocaleString()}원</div>
         </div>
-        <div className="flex items-center justify-between">
-          <div>주문번호 </div>
-          <div className="text-shadow-300">{orderId}</div>
+        <div className="flex items-start justify-between gap-10">
+          <div className="whitespace-nowrap">주문 번호 </div>
+          <div className="text-shadow-300 break-all text-right">{orderId}</div>
         </div>
       </section>
       <Link
